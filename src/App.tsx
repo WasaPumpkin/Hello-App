@@ -1,9 +1,11 @@
 function App() {
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Hello World!</h1>
-      <p>This is my Vite + React + TypeScript app</p>
-      <p>This is my Vite + React + TypeScript app</p>
+      <h1>Hola Mundo!</h1>
+      <p>Esta es una aplicacion Vite + React + TypeScript app</p>
+      <p>Esta es una aplicacion Vite + React + TypeScript app</p>
+      <p>Esta es una aplicacion Vite + React + TypeScript app</p>
+ 
     </div>
   )
 }
