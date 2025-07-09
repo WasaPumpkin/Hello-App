@@ -7,8 +7,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  AWS_REGION: 'us-west-2'
-  BUCKET_NAME: 'hello-app-deploy'
+- group: AWS Secrets  # Asegúrate de tener este grupo creado y autorizado
+
+- name: AWS_REGION
+  value: 'us-west-2'
+
+- name: BUCKET_NAME
+  value: 'hello-app-deploy'
 
 steps:
   - task: NodeTool@0
@@ -24,8 +29,9 @@ steps:
   - script: |
       pip install awscli --upgrade --user
       export PATH=$PATH:$HOME/.local/bin
-      aws configure set aws_access_key_id $(AWS_ACCESS_KEY_ID)
-      aws configure set aws_secret_access_key $(AWS_SECRET_ACCESS_KEY)
-      aws configure set default.region $(AWS_REGION)
-      aws s3 sync dist/ s3://$(BUCKET_NAME) --delete
+      aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID"
+      aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY"
+      aws configure set default.region "$AWS_REGION"
+      aws s3 sync dist/ s3://$BUCKET_NAME --delete
     displayName: 'Upload to S3 via CLI'
+
